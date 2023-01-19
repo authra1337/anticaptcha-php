@@ -46,6 +46,15 @@ class ImageToText extends Anticaptcha implements AntiCaptchaTaskProtocol {
         
     }
     
+    public function setBase64($base64) {
+        if (strlen($base64) > 100) {
+            $this->body = $base64;
+            return true;
+        } else {
+            $this->setErrorMessage("base64 string too small or empty");
+        }
+    }
+    
     public function setPhraseFlag($value) {
         $this->phrase = $value;
     }
